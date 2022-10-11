@@ -4,11 +4,11 @@
     if (!isset($_SESSION['username'])) {
         header("Location: index.php");
     }
-	require_once("navbar.php");
+    require_once("navbar.php");
 
-	require_once("../../../include.php"); // login info to mysql
-	$stmt = $conn->prepare("SELECT film_id, title, release_year, length FROM sakila_film ORDER BY title");
-	$stmt->execute();
+    require_once("../../../include.php"); // login info to mysql
+    $stmt = $conn->prepare("SELECT film_id, title, release_year, length FROM sakila_film ORDER BY title");
+    $stmt->execute();
 ?>
 
 <!DOCTYPE html>
@@ -52,6 +52,9 @@
 			crossorigin="anonymous"></script>
 
 		<script>
+			// depending on which movie is clicked in the table,
+			// the info page receives the unique id of that clicked movie
+			// and displays the info for that particular movie
 			$(document).ready(function() {
 				$('.clickable').click(function() {
 					var id = $(this).closest('tr').attr('id');
@@ -60,6 +63,9 @@
 				});
 			});
 
+			// depending on which movie is clicked in the table,
+			// the delete page receives the unique id of that clicked movie
+			// to be potentially deleted
 			$(document).ready(function() {
 				$('.deleteclick').click(function() {
 					var id = $(this).closest('tr').attr('id');
