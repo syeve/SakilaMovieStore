@@ -5,13 +5,15 @@
         header("Location: index.php");
     }
 
-    $film_id = $_GET['id'];
-    require_once("navbar.php");
+    $film_id = $_GET['id']; // sent from the jquery script on the movie table page
 
-	require_once("../../../include.php"); // login info to mysql
-	$stmt = $conn->prepare("SELECT title, release_year, length, description, 
-    rental_duration, replacement_cost, rating FROM sakila_film WHERE film_id = $film_id;");
-	$stmt->execute();
+    require_once("navbar.php");
+    require_once("../../../include.php"); // login info to mysql
+
+    // fetch movie info based on the id of the movie
+    $stmt = $conn->prepare("SELECT title, release_year, length, description, 
+        rental_duration, replacement_cost, rating FROM sakila_film WHERE film_id = $film_id;");
+    $stmt->execute();
 ?>
 
 <!DOCTYPE html>
